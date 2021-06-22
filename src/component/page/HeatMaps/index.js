@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./heatmaps.module.css";
+import "./heatmaps.css";
 import * as d3 from "d3";
 class Heatmaps extends React.Component {
   constructor(props) {
@@ -13,13 +13,12 @@ class Heatmaps extends React.Component {
     fetch(url)
       .then((data) => data.json())
       .then((res) => {
-        console.log(res);
         const data = res.monthlyVariance,
           baseTemperature = res.baseTemperature,
           yearRange = d3.extent(data, (d) => {
             return d.year;
           });
-
+        console.log(data, baseTemperature, yearRange);
         const legendData = [
           { interval: 2.7, color: "purple" },
           { interval: 3.9, color: "darkorchid" },
@@ -99,18 +98,21 @@ class Heatmaps extends React.Component {
           .style("fill", colorScale)
           .attr("width", barWidth)
           .attr("height", barHeight)
-          .on("mouseover", (d) => {
+          .on("mouseover", (d, data) => {
+            console.log(d, data);
             tooltip
               .html(
-                timeParseFormat(d.month) +
+                timeParseFormat(data.month) +
                   " " +
-                  d.year +
+                  data.year +
                   "<br/>" +
-                  d3.format(".4r")(baseTemperature + d.variance) +
+                  d3.format(".4r")(baseTemperature + data.variance) +
                   " &degC<br/>" +
-                  d.variance +
+                  data.variance +
                   " &degC"
               )
+              .style("left", d.pageX - 35 + "px")
+              .style("top", d.pageY - 73 + "px")
               .style("opacity", 0.9);
           })
           .on("mouseout", () => {
@@ -183,7 +185,7 @@ class Heatmaps extends React.Component {
 
   render() {
     return (
-      <div className={styles.container}>
+      <div className="container">
         <h1>Monthly Global Land-Surface Temperature</h1>
         <svg className="chart"></svg>
       </div>

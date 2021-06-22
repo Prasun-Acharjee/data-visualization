@@ -47,3 +47,35 @@
   opacity: 1;
   right: 0;
 }
+
+.header{
+  font-size: 70px;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(to left,red, violet, indigo, blue, green, yellow, orange);
+  color: transparent;
+  animation: rainbow 0.8s reverse infinite;
+}
+
+@keyframes rainbow{
+  0%{
+    background-image: linear-gradient(to violet,left,indigo,blue,green,yellow,orange,red);
+  }
+  17%{
+    background-image: linear-gradient(to left,orange,red, violet, indigo, blue, green, yellow);
+  }
+  33%{
+    background-image: linear-gradient(to left,yellow,orange,red, violet, indigo, blue, green);
+  }
+  50%{
+    background-image: linear-gradient(to left,green,yellow,orange,red, violet, indigo, blue);
+  }
+  66%{
+    background-image: linear-gradient(to left,blue,green,yellow,orange,red, violet, indigo);
+  }
+  83%{
+    background-image: linear-gradient(to left,indigo,blue,green,yellow,orange,red, violet);
+  }
+  100%{
+    background-image: linear-gradient(to left,red, violet, indigo, blue, green, yellow, orange);
+  }
+}
