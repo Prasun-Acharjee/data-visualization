@@ -10,6 +10,7 @@ import NetworkGraph from "./component/page/NetworkGraph";
 import ScatterPlotDynamic from "./component/page/ScatterPlotDynamic";
 import MainHome from "./home";
 import PathFindHome from "./component/page/PathFinder/home";
+import SortVisualizationApp from "./component/page/SortAlgorithm/home";
 
 const App = () => (
   <main>
@@ -22,7 +23,7 @@ const App = () => (
       <Route path="/heatmaps" component={Heatmaps} />
       <Route path="/networkGraph" component={NetworkGraph} />
       <Route exact path="/scatterplot" component={ScatterPlotDynamic} />
-      <Route exact path="/algo-visulization" component={PathFindHome} />
+      <Route exact path="/algo-visulization" component={SortVisualizationApp} />
     </Switch>
   </main>
 );
