@@ -1,33 +1,27 @@
 import React, { useState } from "react";
 import Graph from "react-graph-vis";
-import testData from "../../../data.json";
-// import "./styles.css";
-// need to import the vis network css in order to show tooltip
-// import "./network.css";
-function NodeGraph() {
-  const [graphData, setGraphData] = useState({});
-  const getData = () => {
-    console.log(testData);
-    let edgesData = testData?.links.map((item) => ({
-      from: item.source,
-      to: item.target,
-    }));
+import CSVReader from "react-csv-reader";
+const papaparseOptions = {
+  header: true,
+  dynamicTyping: true,
+  skipEmptyLines: true,
+  transformHeader: (header) => header.toLowerCase().replace(/\W/g, ""),
+};
 
-    let nodesData = testData?.nodes.map((item, index) => ({
-      id: index,
-      label: item.name,
-      title: item.name,
-    }));
-    setGraphData({ nodes: nodesData, edges: edgesData });
-  };
-  React.useEffect(() => {
-    getData();
-  }, []);
+function NodeGraph() {
+  const [edges, setEdges] = useState([]);
+  const [nodes, setNodes] = useState([]);
 
   var options = {
     nodes: {
       shape: "dot",
-      size: 16,
+      size: 2,
+    },
+    configure: {
+      enabled: true,
+      filter: "nodes,edges",
+      container: undefined,
+      showButton: true,
     },
     physics: {
       forceAtlas2Based: {
@@ -39,8 +33,9 @@ function NodeGraph() {
       maxVelocity: 146,
       solver: "forceAtlas2Based",
       timestep: 0.35,
-      stabilization: { iterations: 150 },
+      stabilization: { iterations: 1500 },
     },
+
     height: "1000px",
   };
   const events = {
@@ -50,9 +45,40 @@ function NodeGraph() {
     },
   };
   return (
-    Object.keys(graphData).length > 0 && (
-      <Graph graph={graphData} options={options} events={events} />
-    )
+    <>
+      {edges.length > 0 && (
+        <Graph graph={{ nodes, edges }} options={options} events={events} />
+      )}
+      <CSVReader
+        label="Nodes"
+        onFileLoaded={(data, fileInfo) => {
+          console.log(data);
+          let nodesData = data.map((item, index) => ({
+            id: item.id,
+            label: item.label,
+            title: item.label,
+          }));
+          setNodes(nodesData.filter((item, index) => index < 200));
+          // console.log(nodesData);
+        }}
+        inputStyle={{ marginTop: 10 }}
+        parserOptions={papaparseOptions}
+      />
+      <CSVReader
+        label="Edges"
+        onFileLoaded={(data, fileInfo) => {
+          let edgesData = data.map((item) => ({
+            from: item.source,
+            to: item.target,
+          }));
+          setEdges(edgesData.filter((item, index) => index < 500));
+
+          console.log(edgesData);
+        }}
+        inputStyle={{ marginTop: 10 }}
+        parserOptions={papaparseOptions}
+      />
+    </>
   );
 }
 export default NodeGraph;

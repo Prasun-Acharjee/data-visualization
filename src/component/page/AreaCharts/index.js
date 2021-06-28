@@ -8,7 +8,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { areaChartData } from "../../../constants";
 import CSVReader from "react-csv-reader";
 const papaparseOptions = {
   header: true,
@@ -56,16 +55,26 @@ export default class Areachart extends PureComponent {
           onFileLoaded={(data, fileInfo) =>
             this.setState(
               {
-                data: data,
+                data: data.reverse().filter((item, index) => index < 50),
               },
               () => console.log(data, fileInfo)
             )
           }
+          inputStyle={{ margin: 20 }}
           parserOptions={papaparseOptions}
         />
         {this.state.data?.length > 0 && (
-          <>
-            <label>Select X Axis</label>
+          <div
+            style={{
+              display: "flex",
+              margin: 20,
+              width: "fit-content",
+              flexDirection: "column",
+            }}
+          >
+            <label style={{ marginRight: 10, marginTop: 10 }}>
+              Select X Axis
+            </label>
             <select
               placeholder="select x axis"
               defaultValue={Object.keys(this?.state?.data[0])[0]}
@@ -85,7 +94,9 @@ export default class Areachart extends PureComponent {
                 <option value={item}>{item}</option>
               ))}
             </select>
-            <label>Select Y Axis</label>
+            <label style={{ marginRight: 10, marginTop: 10 }}>
+              Select Y Axis
+            </label>
             <select
               placeholder="select y axis"
               defaultValue={Object.keys(this?.state?.data[0])[1]}
@@ -99,7 +110,7 @@ export default class Areachart extends PureComponent {
                 <option value={item}>{item}</option>
               ))}
             </select>
-          </>
+          </div>
         )}
       </div>
     );

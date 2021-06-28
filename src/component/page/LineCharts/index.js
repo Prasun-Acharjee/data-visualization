@@ -25,7 +25,7 @@ export default class Linechart extends PureComponent {
   }
   render() {
     return (
-      <div style={{ marginLeft: 30 }}>
+      <div style={{ padding: 20 }}>
         <h1>Line Chart</h1>
         <ResponsiveContainer width="99%" aspect={3}>
           <LineChart
@@ -54,17 +54,28 @@ export default class Linechart extends PureComponent {
           onFileLoaded={(data, fileInfo) =>
             this.setState(
               {
-                data: data,
+                data: data.reverse().filter((item, index) => index < 50),
               },
-              () => console.log(data, fileInfo)
+              () => console.log(this.state.data, data, fileInfo)
             )
           }
+          inputStyle={{ marginTop: 10 }}
           parserOptions={papaparseOptions}
         />
         {this.state.data?.length > 0 && (
-          <>
-            <label>Select X Axis</label>
+          <div
+            style={{
+              margin: 20,
+              display: "flex",
+              flexDirection: "column",
+              width: "fit-content",
+            }}
+          >
+            <label style={{ marginRight: 10, marginTop: 10 }}>
+              Select X Axis
+            </label>
             <select
+              defaultChecked
               placeholder="select x axis"
               defaultValue={Object.keys(this?.state?.data[0])[0]}
               onChange={(e) =>
@@ -83,21 +94,32 @@ export default class Linechart extends PureComponent {
                 <option value={item}>{item}</option>
               ))}
             </select>
-            <label>Select Y Axis</label>
+            <label style={{ marginRight: 10, marginTop: 10 }}>
+              Select Y Axis
+            </label>
             <select
+              defaultChecked
               placeholder="select y axis"
               defaultValue={Object.keys(this?.state?.data[0])[1]}
               onChange={(e) =>
-                this.setState({ yaxis: e.target.value }, () => {
-                  console.log(this.state);
-                })
+                this.setState(
+                  {
+                    yaxis: e.target.value,
+                    data: this.state.data.sort(function (a, b) {
+                      return a[e.target.value] - b[e.target.value];
+                    }),
+                  },
+                  () => {
+                    console.log(this.state);
+                  }
+                )
               }
             >
               {Object.keys(this.state.data[0])?.map((item) => (
                 <option value={item}>{item}</option>
               ))}
             </select>
-          </>
+          </div>
         )}
       </div>
     );

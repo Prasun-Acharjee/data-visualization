@@ -3,10 +3,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
-  background-image: url(../../Assets/background.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  overflow: scroll;
 }
 
 .button {
@@ -17,7 +14,7 @@
   text-align: center;
   font-size: 28px;
   padding: 20px;
-  width: 200px;
+  min-width: 200px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
@@ -50,18 +47,8 @@
 
 .header {
   font-size: 70px;
-  -webkit-background-clip: text;
-  background-image: linear-gradient(
-    to left,
-    red,
-    violet,
-    indigo,
-    blue,
-    green,
-    yellow,
-    orange
-  );
-  color: transparent;
+  color: white;
+  z-index: 100;
   /* animation: rainbow 0.8s reverse infinite; */
 }
 

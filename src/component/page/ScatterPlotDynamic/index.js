@@ -1,17 +1,13 @@
 import React, { PureComponent } from "react";
 import {
-  BarChart,
-  Bar,
-  Cell,
+  ScatterChart,
+  Scatter,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
-
-import { barChartData } from "../../../constants";
 import CSVReader from "react-csv-reader";
 const papaparseOptions = {
   header: true,
@@ -20,44 +16,37 @@ const papaparseOptions = {
   transformHeader: (header) => header.toLowerCase().replace(/\W/g, ""),
 };
 
-export default class Barchart extends PureComponent {
+export default class ScatterPlotDynamic extends PureComponent {
   constructor(props) {
     super(props);
     this.state = { data: [], xaxis: "", yaxis: "" };
   }
   render() {
     return (
-      <div style={{ marginLeft: 30 }}>
-        <h1>Bar Chart</h1>
+      <div style={{ padding: 20 }}>
+        <h1>Scatter Chart</h1>
         <ResponsiveContainer width="99%" aspect={3}>
-          <BarChart
-            width={1000}
-            height={800}
-            data={this.state.data}
+          <ScatterChart
+            height={500}
             margin={{
-              top: 5,
-              right: 30,
-              left: 20,
+              top: 10,
               bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey={this.state.xaxis} />
-            <YAxis dataKey={this.state.yaxis} />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey={this.state.yaxis} fill="#8884d8" />
-            {/* <Bar dataKey="2016" fill="#82ca9d" /> */}
-          </BarChart>
+            <CartesianGrid />
+            <XAxis dataKey={this.state.xaxis} name={this.state.xaxis} />
+            <YAxis dataKey={this.state.yaxis} name={this.state.yaxis} />
+            <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+            <Scatter data={this.state.data} fill="#8884d8" />
+          </ScatterChart>
         </ResponsiveContainer>
-
         <CSVReader
           onFileLoaded={(data, fileInfo) =>
             this.setState(
               {
-                data: data.reverse().filter((item, index) => index < 50),
+                data: data.reverse().filter((item, index) => index < 20),
               },
-              () => console.log(data, fileInfo)
+              () => console.log(this.state.data, data, fileInfo)
             )
           }
           inputStyle={{ marginTop: 10 }}
@@ -76,6 +65,7 @@ export default class Barchart extends PureComponent {
               Select X Axis
             </label>
             <select
+              defaultChecked
               placeholder="select x axis"
               defaultValue={Object.keys(this?.state?.data[0])[0]}
               onChange={(e) =>
@@ -98,6 +88,7 @@ export default class Barchart extends PureComponent {
               Select Y Axis
             </label>
             <select
+              defaultChecked
               placeholder="select y axis"
               defaultValue={Object.keys(this?.state?.data[0])[1]}
               onChange={(e) =>
