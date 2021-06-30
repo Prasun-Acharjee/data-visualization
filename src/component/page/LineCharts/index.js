@@ -26,7 +26,86 @@ export default class Linechart extends PureComponent {
   render() {
     return (
       <div style={{ padding: 20, height: "100vh", width: "100vw" }}>
-        <h1>Line Chart</h1>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            width: "95%",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
+          <h1>Line Chart </h1>
+          <div
+            style={{ display: "flex", alignItems: "center", marginLeft: 20 }}
+          >
+            <span style={{ marginRight: 10 }}>
+              Choose a CSV file to visulize data
+            </span>
+            <CSVReader
+              onFileLoaded={(data, fileInfo) =>
+                this.setState(
+                  {
+                    data: data.reverse().filter((item, index) => index < 50),
+                  },
+                  () => console.log(this.state.data, data, fileInfo)
+                )
+              }
+              inputStyle={{ marginTop: 10 }}
+              parserOptions={papaparseOptions}
+            />
+            {this.state.data?.length > 0 && (
+              <div
+                style={{
+                  display: "flex",
+                  marginRight: 20,
+                  width: "fit-content",
+                }}
+              >
+                <label style={{ marginRight: 10, marginTop: 10 }}>
+                  Select X Axis
+                </label>
+                <select
+                  placeholder="select x axis"
+                  defaultValue={Object.keys(this?.state?.data[0])[0]}
+                  onChange={(e) =>
+                    this.setState(
+                      {
+                        xaxis: e.target.value,
+                        data: this.state.data.sort(function (a, b) {
+                          return a[e.target.value] - b[e.target.value];
+                        }),
+                      },
+                      () => console.log(this.state)
+                    )
+                  }
+                >
+                  {Object.keys(this.state.data[0])?.map((item) => (
+                    <option value={item}>{item}</option>
+                  ))}
+                </select>
+                <label
+                  style={{ marginRight: 10, marginTop: 10, marginLeft: 10 }}
+                >
+                  Select Y Axis
+                </label>
+                <select
+                  placeholder="select y axis"
+                  defaultValue={Object.keys(this?.state?.data[0])[1]}
+                  onChange={(e) =>
+                    this.setState({ yaxis: e.target.value }, () => {
+                      console.log(this.state);
+                    })
+                  }
+                >
+                  {Object.keys(this.state.data[0])?.map((item) => (
+                    <option value={item}>{item}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+          </div>
+        </div>
         <ResponsiveContainer width="99%" aspect={3}>
           <LineChart
             height={500}
@@ -49,78 +128,6 @@ export default class Linechart extends PureComponent {
             />
           </LineChart>
         </ResponsiveContainer>
-
-        <CSVReader
-          onFileLoaded={(data, fileInfo) =>
-            this.setState(
-              {
-                data: data.reverse().filter((item, index) => index < 50),
-              },
-              () => console.log(this.state.data, data, fileInfo)
-            )
-          }
-          inputStyle={{ marginTop: 10 }}
-          parserOptions={papaparseOptions}
-        />
-        {this.state.data?.length > 0 && (
-          <div
-            style={{
-              margin: 20,
-              display: "flex",
-              flexDirection: "column",
-              width: "fit-content",
-            }}
-          >
-            <label style={{ marginRight: 10, marginTop: 10 }}>
-              Select X Axis
-            </label>
-            <select
-              defaultChecked
-              placeholder="select x axis"
-              defaultValue={Object.keys(this?.state?.data[0])[0]}
-              onChange={(e) =>
-                this.setState(
-                  {
-                    xaxis: e.target.value,
-                    data: this.state.data.sort(function (a, b) {
-                      return a[e.target.value] - b[e.target.value];
-                    }),
-                  },
-                  () => console.log(this.state)
-                )
-              }
-            >
-              {Object.keys(this.state.data[0])?.map((item) => (
-                <option value={item}>{item}</option>
-              ))}
-            </select>
-            <label style={{ marginRight: 10, marginTop: 10 }}>
-              Select Y Axis
-            </label>
-            <select
-              defaultChecked
-              placeholder="select y axis"
-              defaultValue={Object.keys(this?.state?.data[0])[1]}
-              onChange={(e) =>
-                this.setState(
-                  {
-                    yaxis: e.target.value,
-                    data: this.state.data.sort(function (a, b) {
-                      return a[e.target.value] - b[e.target.value];
-                    }),
-                  },
-                  () => {
-                    console.log(this.state);
-                  }
-                )
-              }
-            >
-              {Object.keys(this.state.data[0])?.map((item) => (
-                <option value={item}>{item}</option>
-              ))}
-            </select>
-          </div>
-        )}
       </div>
     );
   }

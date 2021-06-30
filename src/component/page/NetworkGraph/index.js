@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Graph from "react-graph-vis";
 import CSVReader from "react-csv-reader";
 const papaparseOptions = {
@@ -45,41 +45,65 @@ function NodeGraph() {
       console.log(nodes, edges);
     },
   };
+
+  useEffect(() => {
+    setNodes([]);
+    setEdges([]);
+  }, []);
+
   return (
-    <>
+    <div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <CSVReader
+          label={
+            <p style={{ marginRight: 10, fontWeight: "bold" }}>
+              Enter nodes via CSV file
+            </p>
+          }
+          onFileLoaded={(data, fileInfo) => {
+            console.log(data);
+            let nodesData = data.map((item, index) => ({
+              id: item.id,
+              label: item.label,
+              title: item.label,
+            }));
+            setNodes([]);
+            setNodes(nodesData.filter((item, index) => index < 200));
+            // console.log(nodesData);
+          }}
+          inputStyle={{ marginTop: 10 }}
+          parserOptions={papaparseOptions}
+        />
+        <CSVReader
+          label={
+            <p style={{ marginRight: 10, fontWeight: "bold" }}>
+              Enter edges via CSV file
+            </p>
+          }
+          onFileLoaded={(data, fileInfo) => {
+            let edgesData = data.map((item) => ({
+              from: item.source,
+              to: item.target,
+            }));
+            setEdges([]);
+            setEdges(edgesData.filter((item, index) => index < 500));
+
+            console.log(edgesData);
+          }}
+          inputStyle={{ marginTop: 10 }}
+          parserOptions={papaparseOptions}
+        />
+      </div>
+
       {edges.length > 0 && (
         <Graph graph={{ nodes, edges }} options={options} events={events} />
       )}
-      <CSVReader
-        label="Nodes"
-        onFileLoaded={(data, fileInfo) => {
-          console.log(data);
-          let nodesData = data.map((item, index) => ({
-            id: item.id,
-            label: item.label,
-            title: item.label,
-          }));
-          setNodes(nodesData.filter((item, index) => index < 200));
-          // console.log(nodesData);
-        }}
-        inputStyle={{ marginTop: 10 }}
-        parserOptions={papaparseOptions}
-      />
-      <CSVReader
-        label="Edges"
-        onFileLoaded={(data, fileInfo) => {
-          let edgesData = data.map((item) => ({
-            from: item.source,
-            to: item.target,
-          }));
-          setEdges(edgesData.filter((item, index) => index < 500));
-
-          console.log(edgesData);
-        }}
-        inputStyle={{ marginTop: 10 }}
-        parserOptions={papaparseOptions}
-      />
-    </>
+    </div>
   );
 }
 export default NodeGraph;

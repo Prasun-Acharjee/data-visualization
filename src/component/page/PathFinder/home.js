@@ -3,7 +3,7 @@ import Graph from "./components/GraphSketch";
 import Navbar from "./components/Navbar";
 import "./home.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import Intro from "./components/Intro";
 export default class PathFindHome extends React.Component {
   constructor(props) {
     super(props);
@@ -112,7 +112,7 @@ export default class PathFindHome extends React.Component {
           returnGenerateMaze={this.returnGenerateMaze}
           returnClearAnimation={this.returnClearAnimation}
         />
-        {/* <Intro /> */}
+        <Intro algorithm={this.state.pathAlgorithm} />
       </div>
     );
   }
