@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./sortAlgo.css";
 
 import AppControls from "./components/molecules/AppControls";
 import TopBar from "./components/organisms/TopBar";

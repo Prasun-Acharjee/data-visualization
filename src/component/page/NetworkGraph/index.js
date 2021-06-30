@@ -18,7 +18,7 @@ function NodeGraph() {
       size: 2,
     },
     configure: {
-      enabled: true,
+      enabled: false,
       filter: "nodes,edges",
       container: undefined,
       showButton: true,
@@ -37,6 +37,7 @@ function NodeGraph() {
     },
 
     height: "1000px",
+    width: "1920px",
   };
   const events = {
     select: function (event) {

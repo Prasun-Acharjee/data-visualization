@@ -1,5 +1,5 @@
 import React from "react";
-import Home from "./component/page/Home/index";
+import Home from "./component/page/DataVisulizationHome/index";
 import Linechart from "./component/page/LineCharts";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
@@ -11,6 +11,7 @@ import ScatterPlotDynamic from "./component/page/ScatterPlotDynamic";
 import MainHome from "./home";
 import PathFindHome from "./component/page/PathFinder/home";
 import SortVisualizationApp from "./component/page/SortAlgorithm/home";
+import AlgoHome from "./component/page/AlgorithmVisulizationHome";
 
 const App = () => (
   <main>
@@ -23,7 +24,9 @@ const App = () => (
       <Route path="/heatmaps" component={Heatmaps} />
       <Route path="/networkGraph" component={NetworkGraph} />
       <Route exact path="/scatterplot" component={ScatterPlotDynamic} />
-      <Route exact path="/algo-visulization" component={SortVisualizationApp} />
+      <Route exact path="/algorithm-visulization" component={AlgoHome} />
+      <Route path="/pathfinder" component={PathFindHome} />
+      <Route path="/sortvisulization" component={SortVisualizationApp} />
     </Switch>
   </main>
 );

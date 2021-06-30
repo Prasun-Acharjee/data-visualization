@@ -105,28 +105,25 @@ export default class CustomNavbar extends Component {
               />
 
               <Dropdown.Menu>
-                {[
-                  "Breadth First Search",
-                  "Depth First Search",
-                  "Dijkstra",
-                  "Astar",
-                ].map((pathAlgorithm) => {
-                  return (
-                    <Dropdown.Item
-                      key={pathAlgorithm}
-                      onClick={() => {
-                        this.props.getShortPathAlgorithm(
-                          pathAlgorithm.replace(/ /g, "")
-                        );
-                        this.setState({
-                          selectedPathAlgorithm: pathAlgorithm,
-                        });
-                      }}
-                    >
-                      {pathAlgorithm}
-                    </Dropdown.Item>
-                  );
-                })}
+                {["Breadth First Search", "Depth First Search", "Dijkstra"].map(
+                  (pathAlgorithm) => {
+                    return (
+                      <Dropdown.Item
+                        key={pathAlgorithm}
+                        onClick={() => {
+                          this.props.getShortPathAlgorithm(
+                            pathAlgorithm.replace(/ /g, "")
+                          );
+                          this.setState({
+                            selectedPathAlgorithm: pathAlgorithm,
+                          });
+                        }}
+                      >
+                        {pathAlgorithm}
+                      </Dropdown.Item>
+                    );
+                  }
+                )}
               </Dropdown.Menu>
             </Dropdown>
           </Col>
@@ -155,7 +152,10 @@ export default class CustomNavbar extends Component {
           </Col>
           <Col style={{ padding: "0px 10px" }}>
             <Button variant="light" className="nav-element">
-              Distance <Badge variant="dark">{this.props.distance}</Badge>
+              Distance{" "}
+              <Badge variant="dark" color="black">
+                {this.props.distance}
+              </Badge>
             </Button>
           </Col>
         </Container>

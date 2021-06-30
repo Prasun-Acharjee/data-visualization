@@ -27,7 +27,7 @@ export default class Barchart extends PureComponent {
   }
   render() {
     return (
-      <div style={{ marginLeft: 30 }}>
+      <div style={{ marginLeft: 30, height: "100vh", width: "100vw" }}>
         <h1>Bar Chart</h1>
         <ResponsiveContainer width="99%" aspect={3}>
           <BarChart

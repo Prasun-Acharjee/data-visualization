@@ -23,7 +23,7 @@ export default class ScatterPlotDynamic extends PureComponent {
   }
   render() {
     return (
-      <div style={{ padding: 20 }}>
+      <div style={{ padding: 20, height: "100vh", width: "100vw" }}>
         <h1>Scatter Chart</h1>
         <ResponsiveContainer width="99%" aspect={3}>
           <ScatterChart
