@@ -108,7 +108,7 @@ export default class Barchart extends PureComponent {
             )}
           </div>
         </div>
-        <ResponsiveContainer width="99%" aspect={3}>
+        <ResponsiveContainer width="95%" aspect={3}>
           <BarChart
             width={1000}
             height={800}

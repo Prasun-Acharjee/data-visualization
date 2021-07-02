@@ -104,7 +104,7 @@ export default class ScatterPlotDynamic extends PureComponent {
             )}
           </div>
         </div>
-        <ResponsiveContainer width="99%" aspect={3}>
+        <ResponsiveContainer width="95%" aspect={3}>
           <ScatterChart
             height={500}
             margin={{

@@ -104,7 +104,7 @@ export default class Areachart extends PureComponent {
             )}
           </div>
         </div>
-        <ResponsiveContainer width="99%" aspect={3}>
+        <ResponsiveContainer width="95%" aspect={3}>
           <AreaChart
             width={"100%"}
             height={500}
