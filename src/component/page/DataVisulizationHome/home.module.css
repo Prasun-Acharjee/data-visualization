@@ -7,6 +7,15 @@
   margin-top: 40px;
 }
 
+.code_text {
+  color: white;
+  z-index: 100;
+  width: 70%;
+  text-align: center;
+  line-height: 2;
+  font-size: large;
+}
+
 .button {
   border-radius: 4px;
   background-color: #f4511e;

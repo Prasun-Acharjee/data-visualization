@@ -61,12 +61,9 @@ class SortVisualizationApp extends Component {
   }
 
   generateRandomArray = () => {
-    // Generate pseudo-random number between 1 and max
     function getRandomInt(max) {
       return Math.floor(Math.random() * Math.floor(max)) + 1;
     }
-
-    // Generate an array of length max
     const array = Array(this.state.arraySize)
       .fill(0)
       .map(() => getRandomInt(this.state.arraySize * 5));

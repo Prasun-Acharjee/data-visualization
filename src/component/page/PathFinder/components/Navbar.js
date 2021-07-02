@@ -18,13 +18,13 @@ export default class CustomNavbar extends Component {
   }
   render() {
     return (
-      <Navbar bg="dark" className="navbar-custom">
+      <Navbar bg="light" className="navbar-custom">
         <Container>
           <Col>
-            <Dropdown className="nav-element" variant="light" flip="up">
+            <Dropdown className="nav-element" variant="dark" flip="up">
               <Dropdown.Toggle
                 className="nav-element"
-                variant="light"
+                variant="dark"
                 id="dropdown-basic"
               >
                 {this.state.selectedObject}
@@ -34,6 +34,7 @@ export default class CustomNavbar extends Component {
                 {["Start", "Wall", "Weight", "End"].map((object) => {
                   return (
                     <Dropdown.Item
+                      variant="dark"
                       onClick={(event) => {
                         event.stopPropagation();
                         this.props.getObject(object.toLowerCase());
@@ -53,16 +54,12 @@ export default class CustomNavbar extends Component {
 
           {/*  */}
           <Col>
-            <Dropdown as={ButtonGroup} variant="light" className="nav-element">
-              <Button onClick={this.props.generateMaze} variant="light">
+            <Dropdown as={ButtonGroup} variant="dark" className="nav-element">
+              <Button onClick={this.props.generateMaze} variant="dark">
                 {this.state.selectedMazeAlgorithm}
               </Button>
 
-              <Dropdown.Toggle
-                split
-                variant="light"
-                id="dropdown-split-basic"
-              />
+              <Dropdown.Toggle split variant="dark" id="dropdown-split-basic" />
 
               <Dropdown.Menu>
                 {[
@@ -72,6 +69,7 @@ export default class CustomNavbar extends Component {
                 ].map((mazeAlgorithm) => {
                   return (
                     <Dropdown.Item
+                      variant="dark"
                       key={mazeAlgorithm}
                       onClick={() => {
                         this.props.getMazeAlgorithm(
@@ -93,16 +91,12 @@ export default class CustomNavbar extends Component {
           {/*  */}
 
           <Col>
-            <Dropdown as={ButtonGroup} variant="light" className="nav-element">
-              <Button onClick={this.props.findPath} variant="light">
+            <Dropdown as={ButtonGroup} variant="dark" className="nav-element">
+              <Button onClick={this.props.findPath} variant="dark">
                 {this.state.selectedPathAlgorithm}
               </Button>
 
-              <Dropdown.Toggle
-                split
-                variant="light"
-                id="dropdown-split-basic"
-              />
+              <Dropdown.Toggle split variant="dark" id="dropdown-split-basic" />
 
               <Dropdown.Menu>
                 {["Breadth First Search", "Depth First Search", "Dijkstra"].map(
@@ -130,7 +124,7 @@ export default class CustomNavbar extends Component {
 
           <Col style={{ padding: "0px 10px" }}>
             <Button
-              variant="light"
+              variant="dark"
               onClick={() => {
                 this.props.clearSketch();
               }}
@@ -141,7 +135,7 @@ export default class CustomNavbar extends Component {
           </Col>
           <Col style={{ padding: "0px 10px" }}>
             <Button
-              variant="light"
+              variant="dark"
               onClick={() => {
                 this.props.clearAnimation();
               }}
@@ -151,7 +145,7 @@ export default class CustomNavbar extends Component {
             </Button>
           </Col>
           <Col style={{ padding: "0px 10px" }}>
-            <Button variant="light" className="nav-element">
+            <Button variant="dark" className="nav-element">
               Distance{" "}
               <Badge variant="dark" color="black">
                 {this.props.distance}

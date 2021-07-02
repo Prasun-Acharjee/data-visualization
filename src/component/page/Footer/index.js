@@ -1,7 +1,6 @@
 import React from "react";
-import "./style.css";
-
-const Footer = (props) => {
+import "./footer.css";
+const Footer = () => {
   return (
     <footer className="Footer">
       <section>
@@ -13,40 +12,46 @@ const Footer = (props) => {
           rel="noopener noreferrer"
           className="Footer__Link"
         >
-          Prasun Acharjee,
+          Prasun
         </a>
         <a
-          href="
-          https://www.linkedin.com/in/sayan-das-429a471a8/"
+          href="https://www.linkedin.com/in/soumya-banerjee-30a4a5180/"
           target="_blank"
           rel="noopener noreferrer"
           className="Footer__Link"
         >
-          Sayan Das,
+          Soumya
         </a>
         <a
-          href="https://www.linkedin.com/in/gaurav-jha-0a770616b/"
+          href="https://www.linkedin.com/in/sban2009/"
           target="_blank"
           rel="noopener noreferrer"
           className="Footer__Link"
         >
-          Gaurav Jha
+          Spandan
         </a>
-        &amp;
         <a
-          href="#"
+          href="https://www.linkedin.com/in/riddhiman-de-32a233180/"
           target="_blank"
           rel="noopener noreferrer"
           className="Footer__Link"
-          style={{ marginLeft: 20 }}
         >
-          Abhishek Saha
+          Riddhiman
+        </a>
+        <span style={{ marginRight: 10 }}>&amp;</span>
+        <a
+          href="https://www.linkedin.com/in/sayan-das-429a471a8/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="Footer__Link"
+        >
+          Sayan
         </a>
       </section>
 
       <section className="Footer__Items">
         <a
-          href="https://github.com/Prasun-Acharjee/data-visualization"
+          href="https://github.com/Prasun-Acharjee/resume-builder"
           target="_blank"
           rel="noopener noreferrer"
           className="Footer__Link"
@@ -57,5 +62,4 @@ const Footer = (props) => {
     </footer>
   );
 };
-
 export default Footer;

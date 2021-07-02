@@ -40,12 +40,45 @@ class AlgoHome extends React.Component {
             />
           </div>
           <h1 className={styles.header}>Algorithm Visualization</h1>
-          <Link to="/pathfinder" className={styles.button}>
-            <span>PathFinder Visualization</span>
-          </Link>
-          <Link to="/sortvisulization" className={styles.button}>
-            <span>Sort Visulization</span>
-          </Link>
+          <div style={{ display: "flex", marginTop: 80 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Link to="/pathfinder" className={styles.button}>
+                <span>PathFinder Visualization</span>
+              </Link>
+              <p className={styles.code_text}>
+                Pathfinder is a technique that provides visual methods to query
+                paths, while considering various constraints.In this we have
+                shown three different path finding algorithms in a maze, which
+                are be either randomized or created by the user.
+              </p>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Link to="/sortvisulization" className={styles.button}>
+                <span>Sort Visulization</span>
+              </Link>
+              <p className={styles.code_text}>
+                A sorting algorithm is a method for reorganizing a large number
+                of items into a specific order, such as alphabetical,
+                highest-to-lowest value or shortest-to-longest distance. In this
+                example we have used bar charts to explain how certain sorting
+                algorithm works.
+              </p>
+            </div>
+          </div>
         </div>
       </>
     );
