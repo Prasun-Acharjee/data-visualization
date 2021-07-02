@@ -111,9 +111,8 @@ export default class Areachart extends PureComponent {
             data={this.state.data}
             margin={{
               top: 10,
-              right: 30,
-              left: 0,
-              bottom: 0,
+              left: 20,
+              bottom: 5,
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />

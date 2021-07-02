@@ -113,6 +113,7 @@ export default class Linechart extends PureComponent {
             margin={{
               top: 10,
               bottom: 5,
+              left: 20,
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />

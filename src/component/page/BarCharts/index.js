@@ -115,7 +115,6 @@ export default class Barchart extends PureComponent {
             data={this.state.data}
             margin={{
               top: 5,
-              right: 30,
               left: 20,
               bottom: 5,
             }}

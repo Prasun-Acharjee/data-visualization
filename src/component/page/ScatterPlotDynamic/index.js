@@ -110,6 +110,7 @@ export default class ScatterPlotDynamic extends PureComponent {
             margin={{
               top: 10,
               bottom: 5,
+              left: 20,
             }}
           >
             <CartesianGrid />
