@@ -22,10 +22,10 @@ class AlgoHome extends React.Component {
               params={{
                 particles: {
                   number: {
-                    value: 150,
+                    value: 75,
                   },
                   size: {
-                    value: 3,
+                    value: 2,
                   },
                 },
                 interactivity: {

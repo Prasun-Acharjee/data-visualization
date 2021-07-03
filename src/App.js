@@ -12,10 +12,9 @@ import MainHome from "./home";
 import PathFindHome from "./component/page/PathFinder/home";
 import SortVisualizationApp from "./component/page/SortAlgorithm/home";
 import AlgoHome from "./component/page/AlgorithmVisulizationHome";
-import Footer from "./component/page/SortAlgorithm/components/molecules/Footer";
 
 const App = () => (
-  <main style={{ maxHeight: "100vh" }}>
+  <main style={{ width: "100vw" }}>
     <Switch>
       <Route exact path="/" component={MainHome} />
       <Route exact path="/data-visulization" component={Home} />

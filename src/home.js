@@ -14,7 +14,7 @@ const MainHome = () => {
           top: 0,
           left: 0,
           width: "100%",
-          height: "100vh",
+          height: "100%",
         }}
       >
         <Particles
@@ -22,10 +22,10 @@ const MainHome = () => {
           params={{
             particles: {
               number: {
-                value: 150,
+                value: 75,
               },
               size: {
-                value: 3,
+                value: 2,
               },
             },
             interactivity: {
@@ -40,7 +40,7 @@ const MainHome = () => {
         />
       </div>
       <h1 className={styles.header}>Data and Algorithm Visualization</h1>
-      <div style={{ display: "flex", marginTop: 80 }}>
+      <div style={{ display: "flex", marginTop: 8 }}>
         <div
           style={{
             display: "flex",
