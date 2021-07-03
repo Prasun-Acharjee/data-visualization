@@ -26,7 +26,10 @@ const data = {
     ),
     complexity: (
       <div>
-        <p>Worst case time complexity: O(E+V log V)</p>
+        <p>
+          Worst case time complexity: O(E+V log V) if we use priority queue else
+          it would be (V<sup>2</sup>)
+        </p>
         <p>Average case time complexity: O(E+V log V)</p>
         <p>Best case time complexity: O(E+V log V)</p>
         <p>Space complexity: O(V)</p>
